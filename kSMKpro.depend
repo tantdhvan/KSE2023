@@ -1,0 +1,521 @@
+# depslib dependency file v1.0
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\constants.cpp
+	"Constants.h"
+	<vector>
+
+1650618254 
+
+1650619345 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\constants.h
+	<vector>
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\degree.cpp
+	"Degree.h"
+	<algorithm>
+
+1640834296 >
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\degree.h
+	"Framework.h"
+
+1650617917 .h"
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\framework.h
+	"Network.h"
+	<vector>
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\network.h
+	"Kcommon.h"
+	<map>
+	<vector>
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\kcommon.h
+	"Constants.h"
+	<omp.h>
+	<string>
+	<vector>
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\deterministic.cpp
+	"Deterministic.h"
+	<iostream>
+	<math.h>
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\deterministic.h
+	"Streaming.h"
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\streaming.h
+	"Framework.h"
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\framework.cpp
+	"Framework.h"
+	<math.h>
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\kcommon.cpp
+	"Kcommon.h"
+
+1640834296 "
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\network.cpp
+	"Network.h"
+	<algorithm>
+	<fstream>
+	<iostream>
+	<math.h>
+	<numeric>
+	<queue>
+	<sstream>
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\randomized.cpp
+	"Randomized.h"
+	<iostream>
+	<math.h>
+	<stdlib.h>
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\randomized.h
+	"Streaming.h"
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\samplerandomized.cpp
+	"SampleRandomized.h"
+	<iostream>
+	<math.h>
+	<stdlib.h>
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\samplerandomized.h
+	"Streaming.h"
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\singlegreedy.cpp
+	"SingleGreedy.h"
+
+1640834296 edy.h"
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\singlegreedy.h
+	"Framework.h"
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\streaming.cpp
+	"Streaming.h"
+	<algorithm>
+	<iostream>
+	<math.h>
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\streaminggreedy.cpp
+	"StreamingGreedy.h"
+
+1640834296 Greedy.h"
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmk\streaminggreedy.h
+	"Framework.h"
+
+1650618970 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmk\constants.cpp
+	"Constants.h"
+	<vector>
+
+1650619345 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmk\constants.h
+	<vector>
+
+1640834296 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmk\degree.cpp
+	"Degree.h"
+	<algorithm>
+
+1640834296 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmk\degree.h
+	"Framework.h"
+
+1640834296 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmk\framework.h
+	"Network.h"
+	<vector>
+
+1640834296 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmk\network.h
+	"Kcommon.h"
+	<map>
+	<vector>
+
+1640834296 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmk\kcommon.h
+	"Constants.h"
+	<omp.h>
+	<string>
+	<vector>
+
+1640834296 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmk\deterministic.cpp
+	"Deterministic.h"
+	<iostream>
+	<math.h>
+
+1640834296 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmk\deterministic.h
+	"Streaming.h"
+
+1640834296 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmk\streaming.h
+	"Framework.h"
+
+1640834296 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmk\framework.cpp
+	"Framework.h"
+	<math.h>
+
+1650618254 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmk\greedy.cpp
+	"Greedy.h"
+	<iostream>
+
+1650617917 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmk\greedy.h
+	"Framework.h"
+
+1640834296 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmk\kcommon.cpp
+	"Kcommon.h"
+
+1640834296 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmk\network.cpp
+	"Network.h"
+	<algorithm>
+	<fstream>
+	<iostream>
+	<math.h>
+	<numeric>
+	<queue>
+	<sstream>
+
+1640834296 source:/home/dunghtk/Documents/Optimization/kSMK/Degree.cpp
+	"Degree.h"
+	<algorithm>
+
+1640834296 /home/dunghtk/Documents/Optimization/kSMK/Degree.h
+	"Framework.h"
+
+1650774051 /home/dunghtk/Documents/Optimization/kSMK/Framework.h
+	"Network.h"
+	<vector>
+
+1640834296 /home/dunghtk/Documents/Optimization/kSMK/Network.h
+	"Kcommon.h"
+	<map>
+	<vector>
+
+1640834296 /home/dunghtk/Documents/Optimization/kSMK/Kcommon.h
+	"Constants.h"
+	<omp.h>
+	<string>
+	<vector>
+
+1650619345 /home/dunghtk/Documents/Optimization/kSMK/Constants.h
+	<vector>
+
+1640834296 source:/home/dunghtk/Documents/Optimization/kSMK/Deterministic.cpp
+	"Deterministic.h"
+	<iostream>
+	<math.h>
+
+1640834296 /home/dunghtk/Documents/Optimization/kSMK/Deterministic.h
+	"Streaming.h"
+
+1640834296 /home/dunghtk/Documents/Optimization/kSMK/Streaming.h
+	"Framework.h"
+
+1640834296 source:/home/dunghtk/Documents/Optimization/kSMK/Framework.cpp
+	"Framework.h"
+	<math.h>
+
+1650812802 source:/home/dunghtk/Documents/Optimization/kSMK/Greedy.cpp
+	"Greedy.h"
+	<iostream>
+
+1650617917 /home/dunghtk/Documents/Optimization/kSMK/Greedy.h
+	"Framework.h"
+
+1640834296 source:/home/dunghtk/Documents/Optimization/kSMK/Kcommon.cpp
+	"Kcommon.h"
+
+1640834296 source:/home/dunghtk/Documents/Optimization/kSMK/Network.cpp
+	"Network.h"
+	<algorithm>
+	<fstream>
+	<iostream>
+	<math.h>
+	<numeric>
+	<queue>
+	<sstream>
+
+1640834296 source:/home/dunghtk/Documents/Optimization/kSMK/Randomized.cpp
+	"Randomized.h"
+	<iostream>
+	<math.h>
+	<stdlib.h>
+
+1640834296 /home/dunghtk/Documents/Optimization/kSMK/Randomized.h
+	"Streaming.h"
+
+1640834296 source:/home/dunghtk/Documents/Optimization/kSMK/SampleRandomized.cpp
+	"SampleRandomized.h"
+	<iostream>
+	<math.h>
+	<stdlib.h>
+
+1640834296 /home/dunghtk/Documents/Optimization/kSMK/SampleRandomized.h
+	"Streaming.h"
+
+1640834296 source:/home/dunghtk/Documents/Optimization/kSMK/SingleGreedy.cpp
+	"SingleGreedy.h"
+
+1640834296 /home/dunghtk/Documents/Optimization/kSMK/SingleGreedy.h
+	"Framework.h"
+
+1640834296 source:/home/dunghtk/Documents/Optimization/kSMK/Streaming.cpp
+	"Streaming.h"
+	<algorithm>
+	<iostream>
+	<math.h>
+
+1640834296 source:/home/dunghtk/Documents/Optimization/kSMK/StreamingGreedy.cpp
+	"StreamingGreedy.h"
+
+1640834296 /home/dunghtk/Documents/Optimization/kSMK/StreamingGreedy.h
+	"Framework.h"
+
+1650811020 source:/home/dunghtk/Documents/Optimization/kSMK/Constants.cpp
+	"Constants.h"
+	<vector>
+
+1650775275 source:/home/dunghtk/Documents/Optimization/kSMK/main.cpp
+	<fstream>
+	<iostream>
+	<omp.h>
+	<stdlib.h>
+	<string>
+	<sys/resource.h>
+	<sys/time.h>
+	<time.h>
+	<tuple>
+	"Constants.h"
+	"Degree.h"
+	"Deterministic.h"
+	"Greedy.h"
+	"Network.h"
+	"Randomized.h"
+	"SampleRandomized.h"
+	"SingleGreedy.h"
+	"StreamingGreedy.h"
+	<chrono>
+	<iomanip>
+	<direct.h>
+	<sys/stat.h>
+	<sys/types.h>
+
+1650856453 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\degree.cpp
+	"Degree.h"
+	<algorithm>
+
+1650856457 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\degree.h
+	"Framework.h"
+
+1650774051 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\framework.h
+	"Network.h"
+	<vector>
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\network.h
+	"Kcommon.h"
+	<map>
+	<vector>
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\kcommon.h
+	"Constants.h"
+	<omp.h>
+	<string>
+	<vector>
+
+1650619345 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\constants.h
+	<vector>
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\deterministic.cpp
+	"Deterministic.h"
+	<iostream>
+	<math.h>
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\deterministic.h
+	"Streaming.h"
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\streaming.h
+	"Framework.h"
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\framework.cpp
+	"Framework.h"
+	<math.h>
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\kcommon.cpp
+	"Kcommon.h"
+
+1650775275 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\main.cpp
+	<fstream>
+	<iostream>
+	<omp.h>
+	<stdlib.h>
+	<string>
+	<sys/resource.h>
+	<sys/time.h>
+	<time.h>
+	<tuple>
+	"Constants.h"
+	"Degree.h"
+	"Deterministic.h"
+	"Greedy.h"
+	"Network.h"
+	"Randomized.h"
+	"SampleRandomized.h"
+	"SingleGreedy.h"
+	"StreamingGreedy.h"
+	<chrono>
+	<iomanip>
+	<direct.h>
+	<sys/stat.h>
+	<sys/types.h>
+
+1650617917 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\greedy.h
+	"Framework.h"
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\randomized.h
+	"Streaming.h"
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\samplerandomized.h
+	"Streaming.h"
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\singlegreedy.h
+	"Framework.h"
+
+1640834296 d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\streaminggreedy.h
+	"Framework.h"
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\network.cpp
+	"Network.h"
+	<algorithm>
+	<fstream>
+	<iostream>
+	<math.h>
+	<numeric>
+	<queue>
+	<sstream>
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\randomized.cpp
+	"Randomized.h"
+	<iostream>
+	<math.h>
+	<stdlib.h>
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\samplerandomized.cpp
+	"SampleRandomized.h"
+	<iostream>
+	<math.h>
+	<stdlib.h>
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\singlegreedy.cpp
+	"SingleGreedy.h"
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\streaming.cpp
+	"Streaming.h"
+	<algorithm>
+	<iostream>
+	<math.h>
+
+1640834296 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\streaminggreedy.cpp
+	"StreamingGreedy.h"
+
+1650856187 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\constants.cpp
+	"Constants.h"
+	<vector>
+
+1650856364 source:d:\ncs\subdrsubmonotonenonmonotone\sksmk\code\ksmkv4\greedy.cpp
+	"Greedy.h"
+	<iostream>
+
+1650856453 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\degree.cpp
+	"Degree.h"
+	<algorithm>
+
+1650856457 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\degree.h
+	"Framework.h"
+
+1650774051 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\framework.h
+	"Network.h"
+	<vector>
+
+1640834296 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\network.h
+	"Kcommon.h"
+	<map>
+	<vector>
+
+1640834296 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\kcommon.h
+	"Constants.h"
+	<omp.h>
+	<string>
+	<vector>
+
+1650619345 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\constants.h
+	<vector>
+
+1640834296 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\deterministic.cpp
+	"Deterministic.h"
+	<iostream>
+	<math.h>
+
+1640834296 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\deterministic.h
+	"Streaming.h"
+
+1640834296 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\streaming.h
+	"Framework.h"
+
+1640834296 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\framework.cpp
+	"Framework.h"
+	<math.h>
+
+1640834296 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\kcommon.cpp
+	"Kcommon.h"
+
+1640834296 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\network.cpp
+	"Network.h"
+	<algorithm>
+	<fstream>
+	<iostream>
+	<math.h>
+	<numeric>
+	<queue>
+	<sstream>
+
+1640834296 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\randomized.cpp
+	"Randomized.h"
+	<iostream>
+	<math.h>
+	<stdlib.h>
+
+1640834296 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\randomized.h
+	"Streaming.h"
+
+1640834296 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\samplerandomized.cpp
+	"SampleRandomized.h"
+	<iostream>
+	<math.h>
+	<stdlib.h>
+
+1640834296 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\samplerandomized.h
+	"Streaming.h"
+
+1640834296 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\singlegreedy.cpp
+	"SingleGreedy.h"
+
+1640834296 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\singlegreedy.h
+	"Framework.h"
+
+1640834296 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\streaming.cpp
+	"Streaming.h"
+	<algorithm>
+	<iostream>
+	<math.h>
+
+1640834296 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\streaminggreedy.cpp
+	"StreamingGreedy.h"
+
+1640834296 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\streaminggreedy.h
+	"Framework.h"
+
+1651399816 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\constants.cpp
+	"Constants.h"
+	<vector>
+
+1651400601 source:d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\greedy.cpp
+	"Greedy.h"
+	<iostream>
+	<math.h>
+
+1650617917 d:\work\nckh\computing\subdrsubmonotonenonmonotone\ksmk\ksmkv5\greedy.h
+	"Framework.h"
+
