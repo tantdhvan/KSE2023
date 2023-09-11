@@ -6,6 +6,7 @@
 #include <numeric>
 #include <queue>
 #include <sstream>
+#include <random>
 
 using namespace std;
 
@@ -25,9 +26,17 @@ int Network::get_out_degree(uint n)
 {
     return out_neighbors[n].size();
 }
-
-bool Network::read_network_from_file(int no_nodes, string file,
-                                     bool is_directed)
+void Network::init_alpha()
+{
+    uniform_real_distribution<double> unidist(0, 1);
+    alpha.assign(number_of_nodes, 0.0);
+    mt19937 gen(0); // same sequence each time
+    for (int u = 0; u < number_of_nodes; ++u)
+    {
+        alpha[u] = unidist(gen);
+    }
+}
+bool Network::read_network_from_file(int no_nodes, string file, bool is_directed)
 {
     clear();
 
@@ -42,8 +51,7 @@ bool Network::read_network_from_file(int no_nodes, string file,
     for (int i = 0; i < Constants::K; ++i)
     {
         ini[i] = i;
-        probabilities.push_back(1.0 / (2 * Constants::K) *
-                                (1 + i)); // probability for each level of reference
+        probabilities.push_back(1.0 / (2 * Constants::K) * (1 + i)); // probability for each level of reference
         // is 1/2k, 2/2k, 3/2k, ... k/2k
     }
 
@@ -81,7 +89,7 @@ bool Network::read_network_from_file(int no_nodes, string file,
         item = item * 10 + c - 48;
         sp++;
         if (sp == bufSize ||
-                (sp < bufSize && (buffer[sp] < 48 || buffer[sp] > 57)))
+            (sp < bufSize && (buffer[sp] < 48 || buffer[sp] > 57)))
         {
             while (sp < bufSize && (buffer[sp] < 48 || buffer[sp] > 57))
             {
@@ -103,7 +111,7 @@ bool Network::read_network_from_file(int no_nodes, string file,
                 is_start = true;
 
                 s_id = map_node_id[start_id];
-                if (!s_id && start_id != zero_id)   // if start node has not exist
+                if (!s_id && start_id != zero_id) // if start node has not exist
                 {
                     map_node_id[start_id] = id;
                     s_id = id;
@@ -113,7 +121,7 @@ bool Network::read_network_from_file(int no_nodes, string file,
                 }
 
                 e_id = map_node_id[end_id];
-                if (!e_id && end_id != zero_id)   // if end node has not exist
+                if (!e_id && end_id != zero_id) // if end node has not exist
                 {
                     map_node_id[end_id] = id;
                     e_id = id;
@@ -135,13 +143,54 @@ bool Network::read_network_from_file(int no_nodes, string file,
         }
     }
 
-    // generate_txs();
     delete[] buffer;
     return true;
 }
 
-void Network::generate_random_network(int no_nodes, double p,
-                                      bool is_directed)
+bool Network::read_network_from_file2(string file, bool is_directed)
+{
+    clear();
+    int no_edges, no_nodes;
+    ifstream infile(file);
+    infile >> no_nodes >> no_edges;
+
+    number_of_nodes = no_nodes;
+    my_neighbors = vector<vector<pair<int, double>>>(no_nodes);
+    my_weight_k = vector<vector<double>>(no_nodes);
+    int s_node, e_node;
+    double w;
+    for (int i = 0; i < no_edges; i++)
+    {
+        infile >> s_node >> e_node >> w;
+        my_neighbors[s_node].push_back(make_pair(e_node, w));
+        my_neighbors[e_node].push_back(make_pair(s_node, w));
+    }
+    double k1, k2, k3;
+    for (int i = 0; i < no_nodes; i++)
+    {
+        infile >> k1 >> k2 >> k3;
+        my_weight_k[i].push_back(k1);
+        my_weight_k[i].push_back(k2);
+        my_weight_k[i].push_back(k3);
+    }
+    double c;
+    cost_matrix=vector<double>(no_nodes);
+    for (int i = 0; i < no_nodes; i++)
+    {
+        infile >> c;
+        cost_matrix[i]=c;
+    }
+    alpha=vector<double>(no_nodes);
+    double al;
+    for (int i = 0; i < no_nodes; i++)
+    {
+        infile >> al;
+        alpha[i]=al;
+    }
+    return true;
+}
+
+void Network::generate_random_network(int no_nodes, double p, bool is_directed)
 {
     clear();
     number_of_nodes = no_nodes;
@@ -168,7 +217,7 @@ void Network::generate_random_network(int no_nodes, double p,
         random_shuffle(preferences[i].begin(), preferences[i].end());
     }
 
-    #pragma omp parallel for
+#pragma omp parallel for
     for (int i = 0; i < number_of_nodes; ++i)
     {
         for (int j = is_directed ? 0 : i + 1; j < number_of_nodes; ++j)
@@ -178,7 +227,7 @@ void Network::generate_random_network(int no_nodes, double p,
                 int r = common_instance->randomInThread(omp_get_thread_num()) % 1000;
                 if (r < p * 1000)
                 {
-                    #pragma omp critical
+#pragma omp critical
                     {
                         out_neighbors[i].push_back(j);
                         in_neighbors[j].push_back(i);
@@ -211,8 +260,8 @@ uint Network::sample_influence(const kseeds &seeds)
         pair<uint, int> p = q.front();
         ++re;
         q.pop();
-        double prob = 0;      // probability to influence an out-neighbor
-        if (p.second != -1)   // this pair is from seeds
+        double prob = 0;    // probability to influence an out-neighbor
+        if (p.second != -1) // this pair is from seeds
         {
             prob = ((double)preferences[p.first][p.second]) /
                    out_neighbors[p.first].size();
@@ -252,7 +301,7 @@ uint Network::sample_influence_reverse(const kseeds &seeds)
 
     int r_node =
         common_instance->randomInThread(omp_get_thread_num()) % number_of_nodes;
-    if (pref[r_node] != -1)   // if random node is of seeds
+    if (pref[r_node] != -1) // if random node is of seeds
     {
         return 1;
     }
@@ -271,7 +320,7 @@ uint Network::sample_influence_reverse(const kseeds &seeds)
                 if (!visited[v])
                 {
                     double prob = 0.0;
-                    if (pref[v] != -1)   // this neighbor is of seeds
+                    if (pref[v] != -1) // this neighbor is of seeds
                     {
                         prob = ((double)preferences[v][pref[v]] + 1.0) /
                                out_neighbors[v].size();
@@ -310,15 +359,15 @@ uint Network::sample_influence_linear_threshold(const kseeds &seeds)
 {
     vector<int> pref(number_of_nodes, -1);
     vector<int> c_seeds(Constants::K, 0);
+
     for (pair<uint, int> p : seeds)
     {
         pref[p.first] = p.second;
         c_seeds[p.second]++;
     }
 
-    int r_node =
-        common_instance->randomInThread(omp_get_thread_num()) % number_of_nodes;
-    if (pref[r_node] != -1)   // if random node is of seeds
+    int r_node = common_instance->randomInThread(omp_get_thread_num()) % number_of_nodes; // ngấu nhiên 1 node
+    if (pref[r_node] != -1)                                                               // if random node is of seeds
     {
         return 1;
     }
@@ -353,7 +402,7 @@ uint Network::sample_influence_linear_threshold(const kseeds &seeds)
 
                     if (nei == -1)
                         break;
-                    else if (pref[nei] == i)   // if reach seed node
+                    else if (pref[nei] == i) // if reach seed node
                     {
                         return 1;
                     }
@@ -369,6 +418,36 @@ uint Network::sample_influence_linear_threshold(const kseeds &seeds)
         }
     }
     return 0;
+}
+
+double Network::my_estimate_influence(const kseeds &seeds)
+{
+    vector<bool> set(number_of_nodes, false);
+    vector<int> set_k(number_of_nodes, 0);
+    for (size_t i = 0; i < seeds.size(); ++i)
+    {
+        set[seeds[i].first] = true;
+        set_k[seeds[i].first] = seeds[i].second;
+    }
+    double val = 0;
+    for (int u = 0; u < number_of_nodes; ++u)
+    {
+        
+        vector<pair<int, double>> neis = my_neighbors[u];
+        double valU = 0.0;
+        for (size_t j = 0; j < neis.size(); ++j)
+        {
+            int v = neis[j].first;
+            if (set[v])
+            {
+                int k = set_k[v];
+                valU += neis[j].second * my_weight_k[v][k];
+            }
+        }
+        valU = pow(valU, alpha[u]);
+        val += valU;
+    }
+    return val;
 }
 
 bool Network::read_sensor_data(int no_nodes, string file)
@@ -391,7 +470,6 @@ bool Network::read_sensor_data(int no_nodes, string file)
         int epoch, loc;
         double te, hu, li, vol;
         iss >> date >> time >> epoch >> loc >> te >> hu >> li >> vol;
-        //cout<<date<<" |"<<time<<" |"<<epoch<<" |"<<loc<<" |"<<te<<" |"<<hu<<" |"<<li<<" |"<<vol<<endl;
         loc--;
 
         if (loc >= no_nodes)
@@ -468,8 +546,7 @@ void Network::clear()
     sensor_data.clear();
 }
 
-void Network::recursive_entropy(int idx, const kseeds &seeds, double &re,
-                                double &prob)
+void Network::recursive_entropy(int idx, const kseeds &seeds, double &re, double &prob)
 {
     if (idx < seeds.size())
     {

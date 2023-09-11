@@ -10,13 +10,9 @@
 
 #include "Constants.h"
 #include "Degree.h"
-#include "Deterministic.h"
 #include "Greedy.h"
 #include "Network.h"
-#include "Randomized.h"
-#include "SampleRandomized.h"
-#include "SingleGreedy.h"
-#include "StreamingGreedy.h"
+#include "Streaming.h"
 
 //#include <time.h>
 #include <chrono>
@@ -43,18 +39,18 @@ void print_help()
     cout << "-f <data filename>" << endl
          << "-V <size of V> # default: 50" << endl
          << "-t <type of experiment, 0: influence maximization, 1: sensor "
-         "placement> # default: 0"
+            "placement> # default: 0"
          << endl
          << "-k <value of k> # default: 3" << endl
          << "-B <value of B> # default: 10" << endl
          << "-M <value of M> # default: 3" << endl
          << "-e <value of epsilon> # default: 0.5 for IM and 0 for sensor "
-         "placement"
+            "placement"
          << endl
          << "-n <value of eta - denoise step for RStream> # default: 2" << endl
          << "-g <value of gamma> # default: 1.0" << endl
          << "-a <algorithm, 1: DStream, 2: RStream, 3: SGr>, 4: SampleRstream # "
-         "default: 1, please use SSA source code for testing IM algorithm"
+            "default: 1, please use SSA source code for testing IM algorithm"
          << endl
          << "-p <number of threads to running algorithms> # default: 4" << endl;
 }
@@ -127,7 +123,34 @@ pair<string, int> parseArgs(int argc, char **argv)
                     Constants::ALGORITHM = Adaptive;
                     break;
                 case 1:
-                    Constants::ALGORITHM = eAppro;
+                    Constants::ALGORITHM = eAppro; //Alg2
+                    break;
+                case 2:
+                    Constants::ALGORITHM = ream;
+                    break;
+                case 3:
+                    Constants::ALGORITHM = SGr;
+                    break;
+                case 4:
+                    Constants::ALGORITHM = SampleRstream;
+                    break;
+                case 5:
+                    Constants::ALGORITHM = Tang;
+                    break;
+                case 6:
+                    Constants::ALGORITHM = Tang2;
+                    break;
+                case 8:
+                    Constants::ALGORITHM = eApproPlush;
+                    break;
+                case 9:
+                    Constants::ALGORITHM = Testmpi;
+                    break;
+                case 10:
+                    Constants::ALGORITHM = DS;
+                    break;
+                case 11:
+                    Constants::ALGORITHM = RS;
                     break;
                 default:
                     Constants::ALGORITHM = Adaptive;
@@ -152,13 +175,12 @@ void run_command(string filename, int no_nodes)
     bool r = false;
     if (Constants::DATA == Social)
     {
-        r = g->read_network_from_file(no_nodes, filename, false);
+        r = g->read_network_from_file2(filename, false);
     }
     else
     {
         r = g->read_sensor_data(no_nodes, filename);
     }
-
 
     if (!r)
     {
@@ -169,7 +191,7 @@ void run_command(string filename, int no_nodes)
     {
         double sol = 0.0;
         int no_queries = 0;
-        int size_seedsf=0;
+        int size_seedsf = 0;
         omp_set_num_threads(Constants::NUM_THREAD);
         switch (Constants::ALGORITHM)
         {
@@ -179,7 +201,7 @@ void run_command(string filename, int no_nodes)
             estimate e_max(g->get_no_nodes());
             kpoint fe_max;
             double fe;
-            sol = gr->get_solution(seedsf,true,e_max,fe_max,fe);
+            sol = gr->get_solution(seedsf, true, e_max, fe_max, fe);
             no_queries = gr->get_no_queries();
             delete gr;
             break;
@@ -187,28 +209,89 @@ void run_command(string filename, int no_nodes)
         case eAppro:
         {
             Greedy *gr = new Greedy(g);
-            sol = gr->get_solution2(seedsf,true);
+            sol = gr->get_solution2(seedsf, true);
+            no_queries = gr->get_no_queries();
+            delete gr;
+            break;
+        }
+        case eApproPlush:
+        {
+            Greedy *gr = new Greedy(g);
+            sol = gr->get_solution3(seedsf, true);
+            no_queries = gr->get_no_queries();
+            delete gr;
+            break;
+        }
+        case RS:
+        {
+            Constants::NO_DENOISE_STEPS = 1;
+            Constants::ALPHA = 2 / (3 + Constants::BETA - (Constants::BETA / Constants::K));
+            Constants::EPS_TAG = (3 + Constants::BETA - (Constants::BETA / Constants::K)) * Constants::EPS;
+            Streaming *ra = new Streaming(g);
+            sol = ra->get_solution(false);
+            no_queries = ra->get_no_queries();
+            delete ra;
+            break;
+        }
+        case DS:
+        {
+            Constants::NO_DENOISE_STEPS = 1;
+            Constants::ALPHA = 0.5;
+            Constants::EPS_TAG = 4 * Constants::EPS;
+            Streaming *de = new Streaming(g);
+            sol = de->get_solution(true);
+            no_queries = de->get_no_queries();
+            delete de;
+            break;
+        }      
+        case Greedy:
+        {
+            Greedy *gr = new Greedy(g);
+            sol = gr->get_solutionT2(seedsf);
             no_queries = gr->get_no_queries();
             delete gr;
             break;
         }
         }
-        size_seedsf=seedsf.size();
+        size_seedsf = seedsf.size();
 
         if (Constants::DATA == Sensor)
             sol = sol / 100;
         switch (Constants::ALGORITHM)
         {
         case Adaptive:
-            std::cout << "Linear Apdaptive"<< "," << Constants::EPS << ","
-                      << Constants::BUDGET <<","<<no_nodes<< "," << sol<<","<<size_seedsf << "," << no_queries << ",";
+            std::cout << "Linear Apdaptive"
+                      << "," << Constants::EPS << ","
+                      << Constants::BUDGET << "," << no_nodes << "," << sol << "," << size_seedsf << "," << no_queries << ",";
             break;
         case eAppro:
-            std::cout << "eps-approximation"<< "," << Constants::EPS << ","
-                      << Constants::BUDGET << ","<<no_nodes<<","<< sol<<","<<size_seedsf << "," << no_queries << ",";
+            std::cout << "eps-approximation"
+                      << "," << Constants::EPS << ","
+                      << Constants::BUDGET << "," << no_nodes << "," << sol << "," << size_seedsf << "," << no_queries << ",";
+            break;
+        case eApproPlush:
+            std::cout << "eps-approximation++"
+                      << "," << Constants::EPS << ","
+                      << Constants::BUDGET << "," << no_nodes << "," << sol << "," << size_seedsf << "," << no_queries << ",";
+            break;
+        case DS:
+            std::cout << "DS"
+                      << "," << Constants::EPS << ","
+                      << Constants::BUDGET << "," << no_nodes << "," << sol << "," << size_seedsf << "," << no_queries << ",";
+            break;
+        case RS:
+            std::cout << "RS"
+                      << "," << Constants::EPS << ","
+                      << Constants::BUDGET << "," << no_nodes << "," << sol << "," << size_seedsf << "," << no_queries << ",";
+            break;       
+        case Greedy:
+            std::cout << "Greedy"
+                      << "," << Constants::EPS << ","
+                      << Constants::BUDGET << "," << no_nodes << "," << sol << "," << size_seedsf << "," << no_queries << ",";
             break;
         default:
-            std::cout << "Default"<< ", epsilon: " << Constants::EPS << ", with Budget: "
+            std::cout << "Default"
+                      << ", epsilon: " << Constants::EPS << ", with Budget: "
                       << Constants::BUDGET << ", f(.)=" << sol << ", num queries:" << no_queries << ", time:";
             break;
         }
@@ -216,13 +299,12 @@ void run_command(string filename, int no_nodes)
     delete g;
 }
 
-void print_performances(struct rusage *performance_start,
-                        struct rusage *performance_end)
+void print_performances(struct rusage *performance_start, struct rusage *performance_end)
 {
     cout << (performance_end->ru_utime.tv_sec -
              performance_start->ru_utime.tv_sec) +
-         1e-6 * (performance_end->ru_utime.tv_usec -
-                 performance_start->ru_utime.tv_usec)
+                1e-6 * (performance_end->ru_utime.tv_usec -
+                        performance_start->ru_utime.tv_usec)
          << endl;
 }
 

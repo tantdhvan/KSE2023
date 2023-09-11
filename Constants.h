@@ -2,7 +2,7 @@
 #include <vector>
 
 enum DATATYPE { Social, Sensor };
-enum ALG { Adaptive, eAppro, ream, SGr, SampleRstream, Tang, Tang2 };
+enum ALG { Adaptive, eAppro, ream, SGr, SampleRstream, Tang, Tang2, eApproPlush, Testmpi, DS, RS, Greedy };
 
 class Constants {
 public:
@@ -22,5 +22,4 @@ public:
   static double RHO;
   static double DELTA;         // for streaming algorithm
   static int NO_DENOISE_STEPS; // steps for eps' = 0 reach epsilon
-  static std::vector<std::vector<double>> cost_matrix;
 };
